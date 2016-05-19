@@ -17,6 +17,10 @@
 		body 					{ padding-top:50px; }
 		#todo-list 				{ margin-bottom:30px; }
 		#todo-form 	 			{ margin-bottom:50px; }
+		.done-true 					{ text-decoration: line-through;
+									background-color:#f0f0f0; color:#666; }
+		
+		.snooze-true			{ background-color:#f0f0f0; color:#666; }
 	</style>
 
 	<!-- SPELLS -->
@@ -41,8 +45,15 @@
 			<div class="col-sm-4 col-sm-offset-4">
 
 				<div class="checkbox"  ng-repeat="todo in todos">
-                                  <label>
-                                  <input type="checkbox"> {{ todo.text }}
+                                  <input type="button" value=">>" class="snooze" ng-click="clicked = true">
+                                  <label class="snooze-{{clicked==true}}">
+                                  <!-- <input type="checkbox" ng-click="deleteTodo(todo._id)"> -->
+                                  
+                                  <input type="checkbox" ng-model="todo.done"> 
+                                  <span class="done-{{todo.done}}"> {{ todo.text }} </span>
+                                  <span ng-show="todo.done">
+                                  <input type="button" value="Delete" ng-click="deleteTodo(todo._id)">
+                              		</span>
                                   </label>
                                  </div>
                              
